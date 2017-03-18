@@ -118,8 +118,9 @@ Play.prototype = {
 			  clone = new SilentBird(this.game, data.x, data.y, null, name, data.username);
 			  this.clones.add(clone);
 			}
+			clone.unserialize(data);
       }
-      clone.unserialize(data);
+      
 	
     }.bind(this));
   },
