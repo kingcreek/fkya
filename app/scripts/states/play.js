@@ -114,7 +114,7 @@ Play.prototype = {
       }
       if (!clone) {
 		  // Only Clone if my socket not equals to socket recibe
-		  if(name !== 'C/#' + this.socket.id) {
+		  if(name !== 'C' + this.socket.id) {
 			  clone = new SilentBird(this.game, data.x, data.y, null, name, data.username);
 			  this.clones.add(clone);
 			}
