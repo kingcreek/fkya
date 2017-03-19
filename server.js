@@ -26,7 +26,6 @@ if (process.env.LIVERELOAD_PORT) {
 // Serve static files
 app.use(express.static(__dirname + '/build'));
 app.use(express.static(__dirname + '/dist'));
-http.createServer(onRequest).listen(process.env.PORT || 6000)
 
 // Socket.IO: just broadcast everything
 io

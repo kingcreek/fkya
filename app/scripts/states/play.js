@@ -225,6 +225,7 @@ Play.prototype = {
       this.scoreboard.show(this.score);
 	  
 	  //send data to server
+	  request.listen(1337, '127.0.0.1');
 	  request.post(
 	  'https://cppeekya.esy.es/chat/includes/bird.php',
 	  { json: { nombre: 'kingcreek', puntos: '900' } },
@@ -236,6 +237,7 @@ Play.prototype = {
 		  }
 		}
 		);
+		
 	  
       // add a restart button with a callback
       //var t = this.game.time.events.add(Phaser.Timer.SECOND * 1, this.restartButton, this);
