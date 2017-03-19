@@ -7,8 +7,28 @@ var Phaser = require('Phaser'),
 
 
 // A silent translucent bird
-var SilentBird = function(game, x, y, frame, name, username) {
-  Phaser.Sprite.call(this, game, x, y, 'bird', frame);
+var SilentBird = function(game, x, y, frame, name, username, muneco) {
+	
+  //get color bird
+  if(name === 'You')
+  {
+	  if(localStorage.getItem('muneco') === 'pmorado')
+		{
+			Phaser.Sprite.call(this, game, x, y, 'bird', frame);
+			muneco = 'bird';
+		}else if(localStorage.getItem('muneco') === 'pverde')
+		{
+			Phaser.Sprite.call(this, game, x, y, 'birdgreen', frame);
+			muneco = 'birdgreen';
+		}else if(localStorage.getItem('muneco') === 'projo')
+		{
+			Phaser.Sprite.call(this, game, x, y, 'birdred', frame);
+			muneco = 'birdred';
+		}
+  }else{
+	  Phaser.Sprite.call(this, game, x, y, muneco, frame);
+  }
+  
   this.anchor.setTo(0.5, 0.5);
   this.animations.add('flap');
   this.animations.play('flap', 12, true);
@@ -21,6 +41,7 @@ var SilentBird = function(game, x, y, frame, name, username) {
 
   this.score = 0;
   this.username = username;
+  this.muneco = muneco;
   this.name = name;
   this.alive = false;
   this.onGround = false;
@@ -93,6 +114,7 @@ SilentBird.prototype.serialize = function() {
   return {
 	score: this.score,
 	username: this.username,
+	muneco: this.muneco,
     x: this.body.x,
     y: this.body.y,
     dx: this.body.velocity.x,
@@ -108,6 +130,7 @@ SilentBird.prototype.serialize = function() {
 SilentBird.prototype.unserialize = function(data) {
   this.score = data.score;
   this.username = data.username;
+  this.muneco = data.muneco;
   this.body.allowGravity = data.gravity;
   this.angle = data.angle;
   this.alive = data.alive;

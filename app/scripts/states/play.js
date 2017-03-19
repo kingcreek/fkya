@@ -97,7 +97,7 @@ Play.prototype = {
       var name = 'C' + data.sender;
 	  // Only Clone if my socket not equals to socket recibe
 	  if(name !== 'C' + this.socket.id) {
-      console.debug('[Flappy] Position received for ' + name, data);
+      //console.debug('[Flappy] Position received for ' + name, data);
 
 	  //store best score
 		if(data.score > mayorScore) {
@@ -112,7 +112,7 @@ Play.prototype = {
       }, true).first;
       if (!clone) {
         clone = this.clones.getFirstExists(false);
-        clone = new SilentBird(this.game, data.x, data.y, null, name, data.username);
+        clone = new SilentBird(this.game, data.x, data.y, null, name, data.username, data.muneco);
 	    this.clones.add(clone);
 		}
 		clone.unserialize(data);

@@ -36,6 +36,13 @@ Preload.prototype = {
     this.load.audio('groundHit', 'sounds/ground-hit.wav');
     this.load.audio('score', 'sounds/score.wav');
     this.load.audio('ouch', 'sounds/ouch.wav');
+	//load more birds
+	this.load.spritesheet('birdgreen', 'images/birdgreen.png', 34, 24, 3);
+	this.load.spritesheet('birdred', 'images/birdred.png', 34, 24, 3);
+	
+	//load line
+	this.load.image('linea', 'images/linea.png');
+	
   },
   create: function() {
     this.asset.cropEnabled = false;

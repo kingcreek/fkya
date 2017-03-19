@@ -56,6 +56,44 @@ Menu.prototype = {
                                             Phaser.Easing.Linear.NONE,
                                             true, 0, 1000, true);
 
+	//add birds to elect one
+	//set line position
+	this.linea = this.add.image(this.game.width / 2 - 50, 380, 'linea');
+	this.linea.anchor.setTo(0.5, 0.5);
+	//last bird selected
+	//read best score
+	if(!!localStorage) {
+		if(localStorage.getItem('muneco') === 'pmorado')
+		{
+			this.linea.x = this.game.width / 2 - 50;
+		}else if(localStorage.getItem('muneco') === 'pverde')
+		{
+			this.linea.x = this.game.width / 2;
+		}else if(localStorage.getItem('muneco') === 'projo')
+		{
+			this.linea.x = this.game.width / 2 + 50;
+		}else{
+			localStorage.setItem('muneco', 'pmorado');
+		}
+	}
+	
+	//purple
+	this.birdpurple = this.game.add.button(this.game.width / 2 - 50, 360, 'bird',
+                                            this.selectBirdP,
+                                            this);
+	this.birdpurple.anchor.setTo(0.5, 0.5);
+	//green
+	this.birdgreen = this.game.add.button(this.game.width / 2, 360, 'birdgreen',
+                                            this.selectBirdG,
+                                            this);
+	this.birdgreen.anchor.setTo(0.5, 0.5);
+	//red
+	this.birdred = this.game.add.button(this.game.width / 2 + 50, 360, 'birdred',
+                                            this.selectBirdR,
+                                            this);
+	this.birdred.anchor.setTo(0.5, 0.5);
+	
+	
     // add our start button with a callback
     this.startButton = this.game.add.button(this.game.width / 2,
                                             300, 'startButton',
@@ -63,11 +101,26 @@ Menu.prototype = {
                                             this);
     this.startButton.anchor.setTo(0.5, 0.5);
   },
+  
+  selectBirdP: function() {
+	  this.linea.x = this.game.width / 2 - 50;
+	  localStorage.setItem('muneco', 'pmorado');
+  },
+    selectBirdG: function() {
+		this.linea.x = this.game.width / 2;
+		localStorage.setItem('muneco', 'pverde');
+  },
+    selectBirdR: function() {
+		this.linea.x = this.game.width / 2 + 50;
+		localStorage.setItem('muneco', 'projo');
+  },
+  
   startClick: function() {
     // start button click handler
     // start the 'play' state
     this.game.state.start('play');
   }
+  
 };
 
 module.exports = Menu;

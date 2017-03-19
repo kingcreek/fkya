@@ -14,7 +14,7 @@ function getUrlParam(param)
 var nameURL = getUrlParam('name');
 // A regular bird
 var Bird = function(game, x, y, frame) {
-  SilentBird.call(this, game, x, y, frame, 'You', nameURL, 0);
+  SilentBird.call(this, game, x, y, frame, 'You', nameURL);
 
   // New sounds
   this.flapSound = this.game.add.audio('flap');
