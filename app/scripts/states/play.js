@@ -116,8 +116,9 @@ Play.prototype = {
 	    this.clones.add(clone);
 		}
 		clone.unserialize(data);
+	  }
     }.bind(this));
-	}
+	
 	
   },
 
