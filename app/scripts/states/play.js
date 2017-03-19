@@ -7,7 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-var request = require('request');
+var unirest = require('unirest');
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -226,17 +226,14 @@ Play.prototype = {
 	  
 	  //send data to server
 	  
-	  request.post(
-	  'https://cppeekya.esy.es/chat/includes/bird.php',
-	  { json: { nombre: 'kingcreek', puntos: '900' } },
-	  function (error, response, body) {
-		  if (!error && response.statusCode === 200) {
-			  console.log(body);
-		  }else{
-			  console.log('nope');
-		  }
-		}
-		);
+	  unirest.post('https://cppeekya.esy.es/chat/includes/bird.php')
+.header('Accept', 'application/json')
+.send({ "Hello": "World!" })
+.end(function (response) {
+  console.log(response.body);
+});
+
+	  
 		
 	  
       // add a restart button with a callback
