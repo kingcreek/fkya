@@ -228,7 +228,7 @@ Play.prototype = {
 	  
 	  unirest.post('https://cppeekya.esy.es/chat/includes/bird.php')
 .header('Accept', 'application/json')
-.send({ "Hello": "World!" })
+.send({ 'Hello': 'World!' })
 .end(function (response) {
   console.log(response.body);
 });
