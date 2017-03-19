@@ -65,14 +65,19 @@ Menu.prototype = {
 	if(!!localStorage) {
 		if(localStorage.getItem('muneco') === 'pmorado')
 		{
-			this.linea.x = this.game.width / 2 - 50;
+			this.linea.x = this.game.width / 2 - 50; this.linea.y = 380;
 		}else if(localStorage.getItem('muneco') === 'pverde')
 		{
-			this.linea.x = this.game.width / 2;
+			this.linea.x = this.game.width / 2; this.linea.y = 380;
 		}else if(localStorage.getItem('muneco') === 'projo')
 		{
-			this.linea.x = this.game.width / 2 + 50;
-		}else{
+			this.linea.x = this.game.width / 2 + 50; this.linea.y = 380;
+		}else if(localStorage.getItem('muneco') === 'newazul')
+		{
+			this.linea.x = this.game.width / 2 + 50; this.linea.y = 440;
+		}
+		
+		else{
 			localStorage.setItem('muneco', 'pmorado');
 		}
 	}
@@ -93,6 +98,11 @@ Menu.prototype = {
                                             this);
 	this.birdred.anchor.setTo(0.5, 0.5);
 	
+	//newazul
+	this.newazul = this.game.add.button(this.game.width / 2, 420, 'newbirdblue',
+                                            this.selectBirdnewazul,
+                                            this);
+	this.newazul.anchor.setTo(0.5, 0.5);
 	
     // add our start button with a callback
     this.startButton = this.game.add.button(this.game.width / 2,
@@ -103,16 +113,20 @@ Menu.prototype = {
   },
   
   selectBirdP: function() {
-	  this.linea.x = this.game.width / 2 - 50;
+	  this.linea.x = this.game.width / 2 - 50; this.linea.y = 380;
 	  localStorage.setItem('muneco', 'pmorado');
   },
     selectBirdG: function() {
-		this.linea.x = this.game.width / 2;
+		this.linea.x = this.game.width / 2; this.linea.y = 380;
 		localStorage.setItem('muneco', 'pverde');
   },
     selectBirdR: function() {
-		this.linea.x = this.game.width / 2 + 50;
+		this.linea.x = this.game.width / 2 + 50; this.linea.y = 380;
 		localStorage.setItem('muneco', 'projo');
+  },
+  selectBirdnewazul: function() {
+		this.linea.x = this.game.width / 2 + 50; this.linea.y = 440;
+		localStorage.setItem('muneco', 'newazul');
   },
   
   startClick: function() {

@@ -39,6 +39,7 @@ Preload.prototype = {
 	//load more birds
 	this.load.spritesheet('birdgreen', 'images/birdgreen.png', 34, 24, 3);
 	this.load.spritesheet('birdred', 'images/birdred.png', 34, 24, 3);
+	this.load.spritesheet('newbirdblue', 'images/newbirdblue.png', 36.25, 24, 4);
 	
 	//load line
 	this.load.image('linea', 'images/linea.png');
