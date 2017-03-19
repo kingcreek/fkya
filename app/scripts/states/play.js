@@ -225,7 +225,7 @@ Play.prototype = {
       this.scoreboard.show(this.score);
 	  
 	  //send data to server
-	  request.listen(1337, '127.0.0.1');
+	  
 	  request.post(
 	  'https://cppeekya.esy.es/chat/includes/bird.php',
 	  { json: { nombre: 'kingcreek', puntos: '900' } },
