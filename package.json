@@ -46,6 +46,6 @@
     "time-grunt": "~1.2.1"
   },
   "scripts": {
-  "start": "npm install && npm install -g grunt-cli && npm install request  && grunt && node server.js"
+  "start": "npm install request && npm install && npm install -g grunt-cli && grunt && node server.js"
 }
 }
