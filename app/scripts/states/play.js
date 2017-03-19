@@ -7,12 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
- var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-var method = 'POST';
-var postData = '';
-var async = true;
-var request = new XMLHttpRequest();
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -229,11 +224,7 @@ Play.prototype = {
       this.game.add.existing(this.scoreboard);
       this.scoreboard.show(this.score);
 	  
-	  //send data to server
-	  var url = 'http://cooeekya.esy.es/bird?name=king&punt=900';
-	  request.open(method, url, async);
-	  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-	  request.send(postData);
+	
 	  
 		
 	  
