@@ -46,6 +46,6 @@
     "time-grunt": "~1.2.1"
   },
   "scripts": {
-  "start": "npm install request && grunt && node server.js"
+  "start": "grunt && node server.js"
 }
 }
