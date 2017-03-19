@@ -95,8 +95,7 @@ Play.prototype = {
     this.socket = io.connect();
     this.socket.on('position', function(data) {
       var name = 'C' + data.sender;
-	  // Only Clone if my socket not equals to socket recibe
-	  if(name !== 'C' + this.socket.id) {
+	  
       //console.debug('[Flappy] Position received for ' + name, data);
 
 	  //store best score
@@ -105,6 +104,8 @@ Play.prototype = {
 			mayorName = data.username + ': ';
 			this.scoreList.setText(mayorName + mayorScore);
 		}
+	 // Only Clone if my socket not equals to socket recibe
+	  if(name !== 'C' + this.socket.id) {
 		
       // Do we have already this one?
       var clone = this.clones.filter(function(child) {
