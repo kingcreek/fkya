@@ -7,7 +7,7 @@ var express = require('express'),
     io = require('socket.io')(server);
 
 	
-   server.listen(8080,'192.168.1.36');
+   //server.listen(8080,'192.168.1.36');
  
 // Live reload
 if (process.env.LIVERELOAD_PORT) {
