@@ -74,7 +74,7 @@ Menu.prototype = {
 			this.linea.x = this.game.width / 2 + 50; this.linea.y = 380;
 		}else if(localStorage.getItem('muneco') === 'newazul')
 		{
-			this.linea.x = this.game.width / 2 + 50; this.linea.y = 440;
+			this.linea.x = this.game.width / 2; this.linea.y = 440;
 		}
 		
 		else{
@@ -125,7 +125,7 @@ Menu.prototype = {
 		localStorage.setItem('muneco', 'projo');
   },
   selectBirdnewazul: function() {
-		this.linea.x = this.game.width / 2 + 50; this.linea.y = 440;
+		this.linea.x = this.game.width / 2; this.linea.y = 440;
 		localStorage.setItem('muneco', 'newazul');
   },
   
