@@ -7,7 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 var method = 'POST';
 var postData = '';
