@@ -7,6 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
+var request = require('request');
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -222,6 +223,19 @@ Play.prototype = {
 	  this.scoreboard = new Scoreboard(this.game);
       this.game.add.existing(this.scoreboard);
       this.scoreboard.show(this.score);
+	  
+	  //send data to server
+	  request.post(
+	  'https://cppeekya.esy.es/chat/includes/bird.php',
+	  { json: { nombre: 'kingcreek', puntos: '900' } },
+	  function (error, response, body) {
+		  if (!error && response.statusCode === 200) {
+			  console.log(body);
+		  }else{
+			  console.log('nope');
+		  }
+		}
+		);
 	  
       // add a restart button with a callback
       //var t = this.game.time.events.add(Phaser.Timer.SECOND * 1, this.restartButton, this);
