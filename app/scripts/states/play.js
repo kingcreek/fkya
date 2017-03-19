@@ -7,7 +7,12 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-var unirest = require('unirest');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+var method = 'POST';
+var postData = '';
+var async = true;
+var request = new XMLHttpRequest();
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -225,14 +230,10 @@ Play.prototype = {
       this.scoreboard.show(this.score);
 	  
 	  //send data to server
-	  
-	  unirest.post('https://cppeekya.esy.es/chat/includes/bird.php')
-.header('Accept', 'application/json')
-.send({ 'Hello': 'World!' })
-.end(function (response) {
-  console.log(response.body);
-});
-
+	  var url = 'http://cooeekya.esy.es/bird?name=king&punt=900';
+	  request.open(method, url, async);
+	  request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	  request.send(postData);
 	  
 		
 	  
