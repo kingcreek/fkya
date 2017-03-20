@@ -7,7 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-var http = require("http");
+var http = require('http');
 
 var MAX_WIDTH = 576,
     DEBUG = false;
