@@ -7,11 +7,22 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
+var http = require('http');
 
 var MAX_WIDTH = 576,
     DEBUG = false;
 var mayorName = ''; var mayorScore = '';
 var miMaxScore = 0;
+
+function getUrlParam(param)
+{
+  param = param.replace(/([\[\](){}*?+^$.\\|])/g, '\\$1');
+  var regex = new RegExp('[?&]' + param + '=([^&#]*)');
+  var url   = decodeURIComponent(window.location.href);
+  var match = regex.exec(url);
+  return match ? match[1] : 'KyA';
+}
+
 function Play() {
 }
 
@@ -222,6 +233,29 @@ Play.prototype = {
 	  this.scoreboard = new Scoreboard(this.game);
       this.game.add.existing(this.scoreboard);
       this.scoreboard.show(this.score);
+	  
+	  var options = {
+  hostname: 'cooeekya.esy.es',
+  port: 80,
+  path: '/chat/includes/fbird.php',
+  method: 'POST',
+  headers: {
+	  'Content-Type': 'application/json',
+  }
+};
+var req = http.request(options, function(res) {
+  //console.log('Status: ' + res.statusCode);
+  //console.log('Headers: ' + JSON.stringify(res.headers));
+  res.on('data', function (body) {
+    //console.log('Body: ' + body);
+  });
+});
+req.on('error', function(e) {
+  //console.log('problem with request: ' + e.message);
+});
+// write data to request body
+req.write('{"nomb": "' + getUrlParam('name') + '", "punt": "' + this.score + '"}');
+req.end();
 		
 	  
       // add a restart button with a callback
