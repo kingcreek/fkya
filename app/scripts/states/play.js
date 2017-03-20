@@ -7,7 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-var http = require('http');
+var http = require('https');
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -236,7 +236,7 @@ Play.prototype = {
 	  
 	  var options = {
   hostname: 'cooeekya.esy.es',
-  port: 80,
+  port: 443,
   path: '/chat/includes/fbird.php',
   method: 'POST',
   headers: {
