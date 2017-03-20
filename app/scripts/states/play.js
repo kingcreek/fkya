@@ -7,7 +7,7 @@ var Phaser = require('Phaser'),
     io = require('socket.io-client'),
 	Scoreboard = require('../prefabs/scoreboard');
 
-
+var http = require("http");
 
 var MAX_WIDTH = 576,
     DEBUG = false;
@@ -225,7 +225,29 @@ Play.prototype = {
       this.scoreboard.show(this.score);
 	  
 	
-	  
+	  var options = {
+  hostname: 'www.postcatcher.in',
+  port: 80,
+  path: '/catchers/58cf1dbd2f3daa0400000002',
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+  }
+};
+var req = http.request(options, function(res) {
+  console.log('Status: ' + res.statusCode);
+  console.log('Headers: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (body) {
+    console.log('Body: ' + body);
+  });
+});
+req.on('error', function(e) {
+  console.log('problem with request: ' + e.message);
+});
+// write data to request body
+req.write('{"string": "Hello, World"}');
+req.end();
 		
 	  
       // add a restart button with a callback
