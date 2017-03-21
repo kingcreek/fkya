@@ -78,6 +78,10 @@ Play.prototype = {
     // keep the spacebar from propogating up to the browser
     this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 	
+	//set weapon control
+	this.fireKey = this.game.input.keyboard.addKey(Phaser.Keyboard.C);
+    this.fireKey.onDown.add(this.fire, this);
+	
 	this.score = 0;
     this.scoreText = this.game.add.bitmapText(this.game.width/2, 10, 'flappyfont',this.score.toString(), 24);
 	this.scoreText.fixedToCamera = true;
@@ -139,14 +143,21 @@ Play.prototype = {
     // enable collisions between the bird and the ground
     this.game.physics.arcade.collide(this.bird, this.ground, this.deathHandler, null, this);
     this.game.physics.arcade.collide(this.clones, this.ground);
+	
+	// enable collisions between the bullets and the ground && clones && birds
+	this.game.physics.arcade.collide(this.clones, this.bird.weapon.bullets, this.deathHandler, null, this);
+	this.game.physics.arcade.collide(this.bird, this.bird.weapon.bullets, this.deathHandler, null, this);
+	this.game.physics.arcade.collide(this.ground, this.bird.weapon.bullets);
 
     if (!this.gameover) {
         // enable collisions between the bird and each group in the pipes group
         this.pipes.forEach(function(pipeGroup) {
 		  this.checkScore(pipeGroup);
           this.game.physics.arcade.collide(this.bird, pipeGroup, this.deathHandler, null, this);
-		  
           this.game.physics.arcade.collide(this.clones, pipeGroup);
+		  
+		  // enable collisions between the bullets and each group in the pipes group
+		  this.game.physics.arcade.collide(pipeGroup, this.bird.weapon.bullets);
         }, this);
     }
 
@@ -212,6 +223,13 @@ Play.prototype = {
     data.event = 'flap';
     this.socket.emit('position', data);
   },
+  
+  fire: function() {
+    this.bird.fire();
+    var data = this.bird.serialize();
+    data.event = 'fire';
+    this.socket.emit('position', data);
+  },
 
   deathHandler: function(bird, enemy) {
     bird.deathHandler(enemy);
@@ -228,6 +246,8 @@ Play.prototype = {
       var data = this.bird.serialize();
       data.event = 'killed';
       this.socket.emit('position', data);
+	  
+	  
 
 	  //show scoreboard
 	  this.scoreboard = new Scoreboard(this.game);

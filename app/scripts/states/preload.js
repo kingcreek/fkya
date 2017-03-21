@@ -45,6 +45,9 @@ Preload.prototype = {
 	//load line
 	this.load.image('linea', 'images/linea.png');
 	
+	//load bullet and bonus
+	this.load.image('bulletpink', 'images/bulletpink.png');
+	
   },
   create: function() {
     this.asset.cropEnabled = false;

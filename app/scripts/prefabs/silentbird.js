@@ -5,7 +5,6 @@ var Phaser = require('Phaser'),
     Pipe = require('../prefabs/pipe');
 
 
-
 // A silent translucent bird
 var SilentBird = function(game, x, y, frame, name, username, muneco) {
 	
@@ -47,6 +46,12 @@ var SilentBird = function(game, x, y, frame, name, username, muneco) {
 	this.text = this.game.add.text(0, 0, username, style);
     this.text.anchor.set(0.5);
 	
+   //add weapon
+   this.weapon = game.add.weapon(1, 'bulletpink');
+   this.weapon.bulletKillType = Phaser.Weapon.KILL_WORLD_BOUNDS;
+   this.weapon.bulletSpeed = 1200;
+   this.weapon.fireRate = 100;
+   this.weapon.trackSprite(this, 0, 0, true);
 
   this.score = 0;
   this.username = username;
@@ -94,6 +99,12 @@ SilentBird.prototype.flap = function() {
     // rotate the bird to -40 degrees
     this.game.add.tween(this).to({angle: -40}, 100).start();
   }
+};
+
+SilentBird.prototype.fire = function() {
+  //if(!!this.alive) {
+    this.weapon.fire();
+  //}
 };
 
 SilentBird.prototype.onKilled = function() {
@@ -151,6 +162,8 @@ SilentBird.prototype.unserialize = function(data) {
     this.game.add.tween(this).to({angle: -40}, 100).start();
   } else if (data.event === 'killed') {
     this.kill();
+  }else if (data.event === 'fire') {
+    this.weapon.fire();
   }
 };
 
