@@ -75,8 +75,10 @@ Menu.prototype = {
 		}else if(localStorage.getItem('muneco') === 'newazul')
 		{
 			this.linea.x = this.game.width / 2; this.linea.y = 440;
+		}else if(localStorage.getItem('muneco') === 'rosa')
+		{
+			this.linea.x = this.game.width / 2 - 50; this.linea.y = 440;
 		}
-		
 		else{
 			localStorage.setItem('muneco', 'pmorado');
 		}
@@ -104,6 +106,12 @@ Menu.prototype = {
                                             this);
 	this.newazul.anchor.setTo(0.5, 0.5);
 	
+	//rosa
+	this.rosa = this.game.add.button(this.game.width / 2 - 50, 420, 'rosa',
+                                            this.selectBirdrosa,
+                                            this);
+	this.rosa.anchor.setTo(0.5, 0.5);
+	
     // add our start button with a callback
     this.startButton = this.game.add.button(this.game.width / 2,
                                             300, 'startButton',
@@ -127,6 +135,10 @@ Menu.prototype = {
   selectBirdnewazul: function() {
 		this.linea.x = this.game.width / 2; this.linea.y = 440;
 		localStorage.setItem('muneco', 'newazul');
+  },
+  selectBirdrosa: function() {
+		this.linea.x = this.game.width / 2 - 50; this.linea.y = 440;
+		localStorage.setItem('muneco', 'rosa');
   },
   
   startClick: function() {

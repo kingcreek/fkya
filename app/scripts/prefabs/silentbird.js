@@ -29,6 +29,10 @@ var SilentBird = function(game, x, y, frame, name, username, muneco) {
 		{
 			Phaser.Sprite.call(this, game, x, y, 'newbirdblue', frame);
 			muneco = 'newbirdblue';
+		}else if(localStorage.getItem('muneco') === 'rosa')
+		{
+			Phaser.Sprite.call(this, game, x, y, 'rosa', frame);
+			muneco = 'rosa';
 		}
   }else{
 	  Phaser.Sprite.call(this, game, x, y, muneco, frame);
