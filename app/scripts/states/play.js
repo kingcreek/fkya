@@ -120,14 +120,13 @@ Play.prototype = {
 			this.scoreList.setText(mayorName + mayorScore);
 		}
 	 // Only Clone if my socket not equals to socket recibe
-	  if(data.sender !== this.socket.id) {
+	  if(name !== 'C' + this.socket.id) {
 		
       // Do we have already this one?
       var clone = this.clones.filter(function(child) {
         return child.name === name;
       }, true).first;
       if (!clone) {
-		  console.debug('[Flappy] for ' + name);
         clone = this.clones.getFirstExists(false);
         clone = new SilentBird(this.game, data.x, data.y, null, name, data.username, data.muneco);
 	    this.clones.add(clone);
