@@ -33,11 +33,11 @@ Play.prototype = {
   create: function() {
 	  
 	//read best score
-	if(!!localStorage) {
-		miMaxScore = localStorage.getItem('bestScore');
-	} else {
-		miMaxScore = 0;
-    }
+	//if(!!localStorage) {
+	//	miMaxScore = localStorage.getItem('bestScore');
+	//} else {
+	//	miMaxScore = 0;
+    //}
   
     // start the phaser arcade physics engine
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -135,7 +135,6 @@ Play.prototype = {
 	  }
     }.bind(this));
 	
-	
   },
 
   update: function() {
@@ -150,7 +149,10 @@ Play.prototype = {
 	if(this.bird.name !== 'You')
 	{
 		this.game.physics.arcade.collide(this.bird, this.bird.weapon.bullets, this.deathHandler, null, this);
-	}
+	}//else{
+		//my bullet can hit me
+		//this.game.physics.arcade.collide(this.bird, this.bird.weapon.bullets);
+	//}
 	this.game.physics.arcade.collide(this.ground, this.bird.weapon.bullets);
 
     if (!this.gameover) {
@@ -221,18 +223,21 @@ Play.prototype = {
   },
 
   flap: function() {
-    this.bird.flap();
-
-    var data = this.bird.serialize();
-    data.event = 'flap';
-    this.socket.emit('position', data);
+	  this.bird.flap();
+	  if (!this.gameover) {
+		  var data = this.bird.serialize();
+		  data.event = 'flap';
+		  this.socket.emit('position', data);
+	  }
   },
   
   fire: function() {
-    this.bird.fire();
-    var data = this.bird.serialize();
-    data.event = 'fire';
-    this.socket.emit('position', data);
+	if (!this.gameover) {
+		this.bird.fire();
+		var data = this.bird.serialize();
+		data.event = 'fire';
+		this.socket.emit('position', data);
+	}
   },
 
   deathHandler: function(bird, enemy) {

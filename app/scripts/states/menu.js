@@ -81,6 +81,7 @@ Menu.prototype = {
 		}
 		else{
 			localStorage.setItem('muneco', 'pmorado');
+			localStorage.setItem('x', '34');localStorage.setItem('y', '24');
 		}
 	}
 	
@@ -123,22 +124,27 @@ Menu.prototype = {
   selectBirdP: function() {
 	  this.linea.x = this.game.width / 2 - 50; this.linea.y = 380;
 	  localStorage.setItem('muneco', 'pmorado');
+	  localStorage.setItem('x', '34');localStorage.setItem('y', '24');
   },
     selectBirdG: function() {
 		this.linea.x = this.game.width / 2; this.linea.y = 380;
 		localStorage.setItem('muneco', 'pverde');
+		localStorage.setItem('x', '34');localStorage.setItem('y', '24');
   },
     selectBirdR: function() {
 		this.linea.x = this.game.width / 2 + 50; this.linea.y = 380;
 		localStorage.setItem('muneco', 'projo');
+		localStorage.setItem('x', '34');localStorage.setItem('y', '24');
   },
   selectBirdnewazul: function() {
 		this.linea.x = this.game.width / 2; this.linea.y = 440;
 		localStorage.setItem('muneco', 'newazul');
+		localStorage.setItem('x', '36.25');localStorage.setItem('y', '24');
   },
   selectBirdrosa: function() {
 		this.linea.x = this.game.width / 2 - 50; this.linea.y = 440;
 		localStorage.setItem('muneco', 'rosa');
+		localStorage.setItem('x', '39.37');localStorage.setItem('y', '28');
   },
   
   startClick: function() {

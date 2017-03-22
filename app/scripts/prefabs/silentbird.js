@@ -102,9 +102,7 @@ SilentBird.prototype.flap = function() {
 };
 
 SilentBird.prototype.fire = function() {
-  //if(!!this.alive) {
     this.weapon.fire();
-  //}
 };
 
 SilentBird.prototype.onKilled = function() {
@@ -135,8 +133,8 @@ SilentBird.prototype.serialize = function() {
 	score: this.score,
 	username: this.username,
 	muneco: this.muneco,
-    x: this.body.x,
-    y: this.body.y,
+    x: this.body.x + (localStorage.getItem('x') / 2),
+    y: this.body.y + (localStorage.getItem('y') / 2),
     dx: this.body.velocity.x,
     dy: this.body.velocity.y,
     gravity: this.body.allowGravity,
