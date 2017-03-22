@@ -120,7 +120,7 @@ Play.prototype = {
 			this.scoreList.setText(mayorName + mayorScore);
 		}
 	 // Only Clone if my socket not equals to socket recibe
-	  if(name !== 'C' + this.socket.id) {
+	  if(data.sender !== this.socket.id) {
 		console.debug('[Flappy] Position received for ' + name, data);
       // Do we have already this one?
       var clone = this.clones.filter(function(child) {
