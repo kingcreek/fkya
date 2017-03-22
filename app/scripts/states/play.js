@@ -145,8 +145,12 @@ Play.prototype = {
     this.game.physics.arcade.collide(this.clones, this.ground);
 	
 	// enable collisions between the bullets and the ground && clones && birds
-	this.game.physics.arcade.collide(this.clones, this.bird.weapon.bullets, this.deathHandler, null, this);
-	this.game.physics.arcade.collide(this.bird, this.bird.weapon.bullets, this.deathHandler, null, this);
+	this.game.physics.arcade.collide(this.clones, this.bird.weapon.bullets);
+	//only is not my bullet
+	if(this.bird.name !== 'You')
+	{
+		this.game.physics.arcade.collide(this.bird, this.bird.weapon.bullets, this.deathHandler, null, this);
+	}
 	this.game.physics.arcade.collide(this.ground, this.bird.weapon.bullets);
 
     if (!this.gameover) {
